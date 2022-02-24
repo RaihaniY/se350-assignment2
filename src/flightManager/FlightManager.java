@@ -25,8 +25,8 @@ public final class FlightManager {
 
     private List<Flight> flights = new ArrayList();
 
-    public UUID createFlight (String type, Airline line, Airport org, Airport dest) throws NullParameterException {
-        Flight flight = FlightFactory.createFlight(type, line, org, dest);
+    public UUID createFlight (String type, Airline line, Airport org, Airport dest, int capacity) throws NullParameterException, BadParameterException {
+        Flight flight = FlightFactory.createFlight(type, line, org, dest, capacity);
         flights.add(flight);
         return flight.getFlightNumber();
     }

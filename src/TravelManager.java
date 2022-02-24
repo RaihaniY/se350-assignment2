@@ -1,5 +1,7 @@
 import airline.Airline;
+import airline.AirlineFactory;
 import airport.Airport;
+import airport.AirportFactory;
 import exception.BadParameterException;
 import exception.NullParameterException;
 import flightManager.FlightManager;
@@ -10,11 +12,12 @@ public class TravelManager {
 
     public static void main(String[] args) throws Exception {
         try {
-            Airline airline = new Airline("Spirit");
-            Airport origin = new Airport("ORD");
-            Airport destination = new Airport("DFW");
+            Airline line = AirlineFactory.getAirline("Spirit");
+            Airport origin = AirportFactory.getAirport("ORD");
+            Airport destination = AirportFactory.getAirport("DFW");
             UUID fNumber;
-            fNumber=FlightManager.getInstance().createFlight("commercial", airline, origin, destination);
+            fNumber=FlightManager.getInstance().createFlight("passenger", line , origin, destination, 100);
+
             System.out.println(FlightManager.getInstance().getFlightByNumber(fNumber));
         } catch (NullParameterException ex) {
             ex.printStackTrace();
